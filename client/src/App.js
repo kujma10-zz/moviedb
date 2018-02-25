@@ -31,11 +31,32 @@ class App extends Component {
     let movies = this.state.movies;
     if (movies) {
       const listItems = movies.map((movie) =>
-        <li key={movie.id}>{movie.title}</li>
+        this.listItem(movie)
       );
-      return (<ul>{listItems}</ul>);
+      return (
+        <div>
+          <nav class="navbar navbar-light bg-light justify-content-between">
+            <a href="#" class="navbar-brand">MovieDB</a>
+          </nav>
+          <div class="list-group">
+            {listItems}
+          </div>
+        </div>
+      );
     }
     return null;
+  }
+
+  listItem (movie) {
+    return (
+      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{movie.title}</h5>
+          <small class="text-muted">{movie.category}</small>
+        </div>
+        <p class="mb-1">{movie.description}</p>
+      </a>
+    )
   }
 }
 
