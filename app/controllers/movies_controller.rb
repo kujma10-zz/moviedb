@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :update, :destroy]
+  skip_before_action :authorize_request, only: [:index, :show]
 
   def index
     @movies = Movie.all
@@ -7,20 +7,23 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.create!(movie_params)
+    @movie = current_user.movies.create!(movie_params)
     json_response(@movie, :created)
   end
 
   def show
+    @movie = Movie.find(params[:id])
     json_response(@movie)
   end
 
   def update
+    @movie = current_user.movies.find(params[:id])
     @movie.update(movie_params)
     head :no_content
   end
 
   def destroy
+    @movie = current_user.movies.find(params[:id])
     @movie.destroy
     head :no_content
   end
@@ -28,10 +31,6 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.permit(:title, :description, :category)
-  end
-
-  def set_movie
-    @movie = Movie.find(params[:id])
+    params.permit(:title, :description, :category, :created_by)
   end
 end
