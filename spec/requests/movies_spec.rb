@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Movies API', type: :request do
-  let!(:movies) { create_list(:movie, 10) }
+  let(:user) { create(:user) }
+  let!(:movies) { create_list(:movie, 10, created_by: user.id) }
   let(:movie_id) { movies.first.id }
+  let(:headers) { valid_headers }
 
   describe 'GET /movies' do
     before { get '/movies' }
@@ -45,10 +47,12 @@ RSpec.describe 'Movies API', type: :request do
   end
 
   describe 'POST /movies' do
-    let(:valid_attributes) { { title: 'Matrix', description: 'great movie', category: 'action' } }
+    let(:valid_attributes) do
+      {title: 'Matrix', description: 'great movie', category: 'action', created_by: user.id.to_s}.to_json
+    end
 
     context 'when the request is valid' do
-      before { post '/movies', params: valid_attributes }
+      before { post '/movies', params: valid_attributes, headers: headers }
 
       it 'creates a movie' do
         expect(json['title']).to eq('Matrix')
@@ -60,7 +64,7 @@ RSpec.describe 'Movies API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before { post '/movies', params: { title: 'Star Wars' } }
+      before { post '/movies', params: { title: 'Star Wars' }.to_json, headers: headers }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -74,10 +78,10 @@ RSpec.describe 'Movies API', type: :request do
   end
 
   describe 'PUT /movies/:id' do
-    let(:valid_attributes) { { title: 'Start Wars' } }
+    let(:valid_attributes) { { title: 'Start Wars' }.to_json }
 
     context 'when the record exists' do
-      before { put "/movies/#{movie_id}", params: valid_attributes }
+      before { put "/movies/#{movie_id}", params: valid_attributes, headers: headers }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -90,7 +94,7 @@ RSpec.describe 'Movies API', type: :request do
   end
 
   describe 'DELETE /movies/:id' do
-    before { delete "/movies/#{movie_id}" }
+    before { delete "/movies/#{movie_id}", headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
