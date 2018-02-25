@@ -1,6 +1,11 @@
+language: node_js
+node_js:
+  - 9.6.1
 services:
   - postgresql
-
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
+script:
+  - bundle install && bundle exec rspec
+  - cd client && npm install && npm test
