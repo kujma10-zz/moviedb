@@ -1,3 +1,5 @@
+import { getAuthToken } from './helpers/Auth'
+
 export default class Api {
   handleResponse (success, failure, response) {
     if (response.status === 204) {
@@ -14,8 +16,6 @@ export default class Api {
   };
 
   authenticate (params, {onSuccess, onFailure}) {
-    console.log(params)
-
     window.fetch('/auth/login', {
       method: 'POST',
       body: JSON.stringify(params),
@@ -28,6 +28,18 @@ export default class Api {
 
   fetchMovies ({onSuccess, onFailure}) {
     window.fetch('/movies')
+      .then(response => this.handleResponse(onSuccess, onFailure, response))
+  }
+
+  createMovie (params, {onSuccess, onFailure}) {
+    window.fetch('/movies', {
+      method: 'POST',
+      body: JSON.stringify(params),
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": getAuthToken()
+      }
+    })
       .then(response => this.handleResponse(onSuccess, onFailure, response))
   }
 }
