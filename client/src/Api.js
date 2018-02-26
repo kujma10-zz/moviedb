@@ -13,6 +13,19 @@ export default class Api {
     });
   };
 
+  authenticate (params, {onSuccess, onFailure}) {
+    console.log(params)
+
+    window.fetch('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify(params),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => this.handleResponse(onSuccess, onFailure, response))
+  }
+
   fetchMovies ({onSuccess, onFailure}) {
     window.fetch('/movies')
       .then(response => this.handleResponse(onSuccess, onFailure, response))

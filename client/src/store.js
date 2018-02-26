@@ -4,6 +4,7 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducers/index'
 import moviesMiddleware from './middlewares/MoviesMiddleware'
+import loginMiddleware from './middlewares/LoginMiddleware'
 import Api from './Api'
 
 export const history = createHistory()
@@ -15,7 +16,8 @@ const enhancers = []
 const middleware = [
   thunk,
   routerMiddleware(history),
-  moviesMiddleware(api)
+  moviesMiddleware(api),
+  loginMiddleware(api)
 ]
 
 if (process.env.NODE_ENV === 'development') {
