@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory'
 import rootReducer from './reducers/index'
 import moviesMiddleware from './middlewares/MoviesMiddleware'
 import loginMiddleware from './middlewares/LoginMiddleware'
+import movieMiddleware from './middlewares/MovieMiddleware'
 import Api from './Api'
 
 export const history = createHistory()
@@ -17,7 +18,8 @@ const middleware = [
   thunk,
   routerMiddleware(history),
   moviesMiddleware(api),
-  loginMiddleware(api)
+  loginMiddleware(api),
+  movieMiddleware(api)
 ]
 
 if (process.env.NODE_ENV === 'development') {
