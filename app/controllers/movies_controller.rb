@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    json_response(@movies)
+    render :json => @movies, :include => :category, :except => [:category_id]
   end
 
   def create
@@ -31,6 +31,6 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.permit(:title, :description, :category, :created_by)
+    params.permit(:title, :description, :category_id, :created_by)
   end
 end

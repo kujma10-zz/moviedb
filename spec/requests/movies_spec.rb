@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Movies API', type: :request do
   let(:user) { create(:user) }
-  let!(:movies) { create_list(:movie, 10, created_by: user.id) }
+  let(:category) { create(:category) }
+  let!(:movies) { create_list(:movie, 10, created_by: user.id, category_id: category.id) }
   let(:movie_id) { movies.first.id }
   let(:headers) { valid_headers }
 
@@ -48,7 +49,7 @@ RSpec.describe 'Movies API', type: :request do
 
   describe 'POST /movies' do
     let(:valid_attributes) do
-      {title: 'Matrix', description: 'great movie', category: 'action', created_by: user.id.to_s}.to_json
+      {title: 'Matrix', description: 'great movie', category_id: category.id, created_by: user.id.to_s}.to_json
     end
 
     context 'when the request is valid' do

@@ -49,13 +49,17 @@ describe('Movies', () => {
         id: 1,
         title: 'movie',
         description: 'movie description',
-        category: 'category'
+        category: {
+          name: 'category'
+        }
       },
       {
         id: 2,
         title: 'movie',
         description: 'movie description',
-        category: 'category'
+        category: {
+          name: 'category'
+        }
       }
     ]
 
