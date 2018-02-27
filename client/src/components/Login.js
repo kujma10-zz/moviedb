@@ -28,7 +28,6 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    event.stopPropagation();
     this.props.login({email: this.state.email, password: this.state.password});
   }
 

@@ -1,28 +1,39 @@
 import React, { Component } from 'react'
 
 class Categories extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: 0
+    }
+  }
+
   componentDidMount () {
     this.props.fetchCategories()
   }
 
   render () {
-    let categories = this.props.categories;
-    if (categories) {
-      const listItems = categories.map((category) =>
-        this.listItem(category)
-      );
-      return (
+    const listItems = this.props.categories.map((category) =>
+      this.listItem(category)
+    );
+    return (
+      <div>
         <ul className="list-group">
           {listItems}
         </ul>
-      );
-    }
-    return (<span></span>);
+      </div>
+    );
   }
 
   listItem (category) {
+    let className = category.id === this.state.active ? 'list-group-item active' : 'list-group-item'
     return (
-      <li key={category.id} className="list-group-item">{category.name}</li>
+      <li key={category.id} className={className}>
+        <a style={{cursor:'pointer'}} onClick={() => {
+          this.setState({active: category.id});
+          this.props.fetchCategoryMovies({id: category.id});
+        }}>{category.name}</a>
+      </li>
     )
   }
 }

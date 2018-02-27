@@ -47,4 +47,9 @@ export default class Api {
     window.fetch('/categories')
       .then(response => this.handleResponse(onSuccess, onFailure, response))
   }
+
+  fetchCategoryMovies (params, {onSuccess, onFailure}) {
+    window.fetch(`/categories/${params.id}/movies`)
+      .then(response => this.handleResponse(onSuccess, onFailure, response))
+  }
 }

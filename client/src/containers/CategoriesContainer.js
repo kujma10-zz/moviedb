@@ -1,6 +1,9 @@
 import {connect} from 'react-redux'
 import Categories from '../components/Categories'
-import {categoriesRequested} from '../actions/CategoriesActions'
+import {
+  categoriesRequested,
+  categoryMoviesRequested
+} from '../actions/CategoriesActions'
 import {compose} from 'ramda'
 
 const mapStateToProps = state => {
@@ -10,6 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: compose(dispatch, categoriesRequested),
+    fetchCategoryMovies: compose(dispatch, categoryMoviesRequested)
   }
 }
 
