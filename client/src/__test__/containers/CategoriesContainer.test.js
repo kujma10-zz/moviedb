@@ -21,5 +21,7 @@ describe('CategoriesContaner', () => {
     let view = container.find(Categories);
 
     expect(view.props().categories).toEqual(categoriesProps);
+    expect(view.props().fetchCategories()).toBeDefined;
+    expect(view.props().fetchCategoryMovies()).toBeDefined;
   });
 });

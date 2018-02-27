@@ -6,7 +6,8 @@ import CreateMovieFormContainer from '../../containers/CreateMovieFormContainer'
 import CreateMovieForm from '../../components/CreateMovieForm'
 
 describe('CreateMovieFormContaner', () => {
-  const state = {}
+  const categories = ['1']
+  const state = {categories}
   const store = state => configureMockStore([thunk])(state);
 
   const render = store => {
@@ -19,6 +20,7 @@ describe('CreateMovieFormContaner', () => {
     const container = render(store(state));
     let view = container.find(CreateMovieForm);
 
+    expect(view.props().categories).toEqual(categories)
     expect(view.props().onSubmit).toBeDefined()
   });
 });

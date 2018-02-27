@@ -22,6 +22,6 @@ describe('LoginContaner', () => {
     let view = container.find(Login);
 
     expect(view.props().loginState).toEqual(loginState);
-    expect(view.props().login).toBeDefined()
+    expect(view.props().login()).toBeDefined()
   });
 });

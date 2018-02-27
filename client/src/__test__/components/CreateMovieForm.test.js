@@ -8,11 +8,24 @@ import thunk from 'redux-thunk';
 describe('CreateMovieForm', () => {
   test('triggers onSubmit with form data when form is submitted', () => {
     const props = {
-      onSubmit: jest.fn()
+      onSubmit: jest.fn(),
+      categories: [
+        {
+          id: '1',
+          name: 'name'
+        },
+        {
+          id: '2',
+          name: 'name 2'
+        }
+      ]
     }
     const formData = {
       title: 'movie-title',
-      category: 'category',
+      category: {
+        id: '2',
+        name: 'name'
+      },
       description: 'description'
     }
     const state = {
