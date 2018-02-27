@@ -2,7 +2,17 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
 const CreateMovieForm = props => {
-  const { handleSubmit, pristine, submitting } = props
+  const { categories, handleSubmit, pristine, submitting } = props
+
+  const categoryOption = category => {
+    return (
+      <option key={category.id} value={category.id}>{category.name}</option>
+    )
+  };
+
+  const categoryOptions = categories.map((category) => {
+    return categoryOption(category)
+  });
 
   return (
     <form className="createMovieForm" onSubmit={handleSubmit}>
@@ -22,10 +32,7 @@ const CreateMovieForm = props => {
         <div>
           <Field name="category_id" component="select">
             <option />
-            <option value="1">Drama</option>
-            <option value="2">Action</option>
-            <option value="3">Crime</option>
-            <option value="4">Comedy</option>
+            {categoryOptions}
           </Field>
         </div>
       </div>
@@ -43,6 +50,7 @@ const CreateMovieForm = props => {
     </form>
   )
 }
+
 
 export default reduxForm({
   form: 'createMovie'

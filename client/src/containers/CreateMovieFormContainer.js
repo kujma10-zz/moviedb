@@ -3,7 +3,9 @@ import CreateMovieForm from '../components/CreateMovieForm'
 import {movieCreateRequested} from '../actions/MovieActions'
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+    categories: state.categories
+  }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
