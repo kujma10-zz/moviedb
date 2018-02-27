@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import AppContent from './components/AppContent'
+import SearchMovies from './containers/SearchMoviesContainer'
 import Login from './containers/LoginContainer'
 import Logout from './components/Logout'
 import { Link } from 'react-router-dom'
@@ -31,15 +32,16 @@ class App extends React.Component {
         </MetaTags>
         <nav className="navbar navbar-light bg-light justify-content-between">
           <a href="/" className="navbar-brand">MovieDB</a>
-            {isLoggedIn() ? <button onClick={this.onOpenModal}>Add Movie</button>:null}
-            <Modal open={this.state.open} onClose={this.onCloseModal} little>
-              <CreateMovieForm closeModal={this.onCloseModal}/>
-            </Modal>
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-                {isLoggedIn() ? (<Link to='/logout'>Log Out</Link>):(<Link to='/login'>Log In</Link>)}
-              </li>
-            </ul>
+          <SearchMovies />
+          {isLoggedIn() ? <button onClick={this.onOpenModal}>Add Movie</button>:null}
+          <Modal open={this.state.open} onClose={this.onCloseModal} little>
+            <CreateMovieForm closeModal={this.onCloseModal}/>
+          </Modal>
+          <ul className="nav navbar-nav navbar-right">
+            <li>
+              {isLoggedIn() ? (<Link to='/logout'>Log Out</Link>):(<Link to='/login'>Log In</Link>)}
+            </li>
+          </ul>
         </nav>
 
         <main>

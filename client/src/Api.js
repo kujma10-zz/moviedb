@@ -52,4 +52,9 @@ export default class Api {
     window.fetch(`/categories/${params.id}/movies`)
       .then(response => this.handleResponse(onSuccess, onFailure, response))
   }
+
+  searchMovies (params, {onSuccess, onFailure}) {
+    window.fetch(`/movies/search?q=${params.searchQuery}`)
+      .then(response => this.handleResponse(onSuccess, onFailure, response))
+  }
 }

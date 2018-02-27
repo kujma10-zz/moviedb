@@ -9,7 +9,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchMovies: compose(dispatch, moviesRequested),
+    fetchMovies: compose(dispatch, moviesRequested)
   }
 }
 

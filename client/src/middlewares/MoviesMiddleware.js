@@ -1,5 +1,6 @@
 import {
   MOVIES_REQUESTED,
+  MOVIES_SEARCH_REQUESTED,
   moviesReceived,
   moviesRequestFailed
 } from '../actions/MoviesActions';
@@ -14,11 +15,22 @@ export default api => {
       api.fetchMovies({onSuccess, onFailure});
     };
 
+    const searchMovies = params => {
+      const onSuccess = compose(store.dispatch, moviesReceived);
+      const onFailure = compose(store.dispatch, moviesRequestFailed);
+
+      api.searchMovies(params, {onSuccess, onFailure});
+    };
+
     return action => {
       const result = next(action);
       switch (action.type) {
         case MOVIES_REQUESTED: {
           fetchMovies();
+          break;
+        }
+        case MOVIES_SEARCH_REQUESTED: {
+          searchMovies(action.payload);
           break;
         }
         default:
