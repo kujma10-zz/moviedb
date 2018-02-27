@@ -42,4 +42,9 @@ export default class Api {
     })
       .then(response => this.handleResponse(onSuccess, onFailure, response))
   }
+
+  fetchCategories ({onSuccess, onFailure}) {
+    window.fetch('/categories')
+      .then(response => this.handleResponse(onSuccess, onFailure, response))
+  }
 }

@@ -8,7 +8,7 @@ import store, { history } from './store'
 import App from './App'
 
 import './index.css'
-
+import '../node_modules/unsemantic/assets/stylesheets/unsemantic-grid-responsive.css';
 const target = document.querySelector('#root')
 
 render(

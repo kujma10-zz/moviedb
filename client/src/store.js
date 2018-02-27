@@ -6,6 +6,7 @@ import rootReducer from './reducers/index'
 import moviesMiddleware from './middlewares/MoviesMiddleware'
 import loginMiddleware from './middlewares/LoginMiddleware'
 import movieMiddleware from './middlewares/MovieMiddleware'
+import categoriesMiddleware from './middlewares/CategoriesMiddleware'
 import Api from './Api'
 
 export const history = createHistory()
@@ -19,7 +20,8 @@ const middleware = [
   routerMiddleware(history),
   moviesMiddleware(api),
   loginMiddleware(api),
-  movieMiddleware(api)
+  movieMiddleware(api),
+  categoriesMiddleware(api)
 ]
 
 if (process.env.NODE_ENV === 'development') {

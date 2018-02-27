@@ -4,9 +4,9 @@ import {
   LOGIN_REQUEST_FAILED
 } from '../actions/LoginActions'
 
-const initialState = ''
+const initialState = '';
 
-export default function movies(state = initialState, action) {
+export default function loginReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_REQUESTED:
       return 'IN_PROGRESS';
