@@ -1,3 +1,4 @@
 class Movie < ApplicationRecord
-  validates_presence_of :title, :description, :category
+  belongs_to :category, class_name: 'Category'
+  validates_presence_of :title, :description
 end
