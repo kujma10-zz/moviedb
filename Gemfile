@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'jwt'
 
+gem 'pg_search'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'foreman', '~> 0.82.0'

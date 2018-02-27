@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  skip_before_action :authorize_request, only: [:index, :show]
+  skip_before_action :authorize_request, only: [:index, :show, :search]
 
   def index
     @movies = Movie.all
@@ -26,6 +26,11 @@ class MoviesController < ApplicationController
     @movie = current_user.movies.find(params[:id])
     @movie.destroy
     head :no_content
+  end
+
+  def search
+    @movies = Movie.search_for(params[:q])
+    render :json => @movies, :include => :category, :except => [:category_id]
   end
 
   private

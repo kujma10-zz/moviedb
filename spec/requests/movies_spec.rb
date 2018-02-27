@@ -101,4 +101,20 @@ RSpec.describe 'Movies API', type: :request do
       expect(response).to have_http_status(204)
     end
   end
+
+  describe 'GET /movies/search' do
+    let!(:movie) { create(:movie, category_id: category.id, title: "Pulp Fiction") }
+
+    before { get '/movies/search?q=ficti' }
+
+    it 'returns movies matching the search param' do
+      expect(json).not_to be_empty
+      expect(json.size).to eq(1)
+      expect(json[0]["title"]).to eq("Pulp Fiction")
+    end
+
+    it 'returns status code 200' do
+      expect(response).to have_http_status(200)
+    end
+  end
 end

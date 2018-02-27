@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
 
   def movies
     @category = Category.find(params[:id])
-    puts @category.movies.inspect
     render :json => @category.movies, :include => :category, :except => [:category_id]
   end
 end
