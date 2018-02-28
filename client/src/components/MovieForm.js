@@ -17,33 +17,33 @@ const EditMovieForm = props => {
   return (
     <form className="movieForm" onSubmit={handleSubmit}>
       <div>
-        <label>Title</label>
+        <label className="formLabel">Title</label>
         <div>
           <Field
             name="title"
             component="input"
             type="text"
-            placeholder="Title"
+            className="form-control mr-sm-2"
           />
         </div>
       </div>
       <div>
-        <label>Category</label>
+        <label className="formLabel">Category</label>
         <div>
-          <Field name="category_id" component="select">
+          <Field name="category_id" component="select" className="form-control mr-sm-2">
             <option />
             {categoryOptions}
           </Field>
         </div>
       </div>
       <div>
-        <label>Description</label>
+        <label className="formLabel">Description</label>
         <div>
-          <Field name="description" component="textarea" />
+          <Field name="description" component="textarea" className="form-control mr-sm-2" />
         </div>
       </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>
+      <div className="okButton">
+        <button className="btn btn-outline-primary my-2 my-sm-0" type="submit" disabled={pristine || submitting}>
           OK
         </button>
       </div>

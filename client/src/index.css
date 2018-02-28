@@ -11,3 +11,23 @@ body {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.movieForm {
+  padding: 10px;
+}
+
+.formLabel {
+  padding-top: 10px;
+}
+
+.okButton {
+  padding-top: 10px;
+}
+
+.actionButtons button {
+  margin-right: 5px;
+}
+
+.actionButtons button:last-child{
+  margin-right: 0px;
+}
