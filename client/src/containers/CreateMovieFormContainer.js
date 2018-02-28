@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import CreateMovieForm from '../components/CreateMovieForm'
+import MovieForm from '../components/MovieForm'
 import {movieCreateRequested} from '../actions/MovieActions'
 
 const mapStateToProps = (state) => {
@@ -17,4 +17,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateMovieForm)
+export default connect(mapStateToProps, mapDispatchToProps)(MovieForm)

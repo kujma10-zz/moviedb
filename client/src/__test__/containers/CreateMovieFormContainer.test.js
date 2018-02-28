@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {shallow} from 'enzyme';
 import CreateMovieFormContainer from '../../containers/CreateMovieFormContainer'
-import CreateMovieForm from '../../components/CreateMovieForm'
+import MovieForm from '../../components/MovieForm'
 
 describe('CreateMovieFormContaner', () => {
   const categories = ['1']
@@ -16,9 +16,9 @@ describe('CreateMovieFormContaner', () => {
     );
   };
 
-  it('passes props to CreateMovieForm component', () => {
+  it('passes props to MovieForm component', () => {
     const container = render(store(state));
-    let view = container.find(CreateMovieForm);
+    let view = container.find(MovieForm);
 
     expect(view.props().categories).toEqual(categories)
     expect(view.props().onSubmit).toBeDefined()

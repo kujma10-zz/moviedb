@@ -1,11 +1,11 @@
 import React from 'react'
 import Enzyme, { mount } from 'enzyme'
-import CreateMovieForm from '../../components/CreateMovieForm'
+import MovieForm from '../../components/MovieForm'
 import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-describe('CreateMovieForm', () => {
+describe('MovieForm', () => {
   test('triggers onSubmit with form data when form is submitted', () => {
     const props = {
       onSubmit: jest.fn(),
@@ -22,15 +22,12 @@ describe('CreateMovieForm', () => {
     }
     const formData = {
       title: 'movie-title',
-      category: {
-        id: '2',
-        name: 'name'
-      },
+      category_id: '2',
       description: 'description'
     }
     const state = {
       form: {
-        createMovie: {
+        movieForm: {
           values: formData
         }
       }
@@ -38,12 +35,11 @@ describe('CreateMovieForm', () => {
     const store = configureMockStore([thunk])(state);
     const wrapper = mount(
       <Provider store={store}>
-        <CreateMovieForm {...props} />
+        <MovieForm {...props} />
       </Provider>
     );
 
-    wrapper.setState(formData);
-    const submit = wrapper.find('.createMovieForm');
+    const submit = wrapper.find('.movieForm');
     submit.simulate('submit');
 
     expect(props.onSubmit.mock.calls.length).toBe(1);
