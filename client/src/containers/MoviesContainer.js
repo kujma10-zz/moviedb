@@ -1,6 +1,7 @@
 import {connect} from 'react-redux'
 import Movies from '../components/Movies'
 import {moviesRequested} from '../actions/MoviesActions'
+import {movieDeleteRequested} from '../actions/MovieActions'
 import {compose} from 'ramda'
 
 const mapStateToProps = state => {
@@ -9,7 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchMovies: compose(dispatch, moviesRequested)
+    fetchMovies: compose(dispatch, moviesRequested),
+    deleteMovie: compose(dispatch, movieDeleteRequested)
   }
 }
 

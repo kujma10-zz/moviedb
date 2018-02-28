@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-const CreateMovieForm = props => {
+const EditMovieForm = props => {
   const { categories, handleSubmit, pristine, submitting } = props
 
   const categoryOption = category => {
@@ -15,7 +15,7 @@ const CreateMovieForm = props => {
   });
 
   return (
-    <form className="createMovieForm" onSubmit={handleSubmit}>
+    <form className="movieForm" onSubmit={handleSubmit}>
       <div>
         <label>Title</label>
         <div>
@@ -44,7 +44,7 @@ const CreateMovieForm = props => {
       </div>
       <div>
         <button type="submit" disabled={pristine || submitting}>
-          Add
+          OK
         </button>
       </div>
     </form>
@@ -53,5 +53,5 @@ const CreateMovieForm = props => {
 
 
 export default reduxForm({
-  form: 'createMovie'
-})(CreateMovieForm)
+  form: 'movieForm'
+})(EditMovieForm)

@@ -26,5 +26,7 @@ describe('MoviesContaner', () => {
     let view = container.find(Movies);
 
     expect(view.props().movies).toEqual(moviesProps);
+    expect(view.props().fetchMovies()).toBeDefined;
+    expect(view.props().deleteMovie()).toBeDefined;
   });
 });

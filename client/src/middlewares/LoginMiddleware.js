@@ -3,13 +3,14 @@ import {
   loginRequestFailed,
   loginSucceded
 } from '../actions/LoginActions';
-import { setAuthToken } from '../helpers/Auth'
+import { setAuthToken, setUserId } from '../helpers/Auth'
 
 export default api => {
   return store => next => {
     const login = (params) => {
       const onSuccess = (response) => {
         setAuthToken(response.auth_token);
+        setUserId(response.user_id);
         store.dispatch(loginSucceded());
       };
 

@@ -43,6 +43,28 @@ export default class Api {
       .then(response => this.handleResponse(onSuccess, onFailure, response))
   }
 
+  updateMovie (params, {onSuccess, onFailure}) {
+    window.fetch(`/movies/${params.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(params.values),
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": getAuthToken()
+      }
+    })
+      .then(response => this.handleResponse(onSuccess, onFailure, response))
+  }
+
+  deleteMovie (params, {onSuccess, onFailure}) {
+    window.fetch(`/movies/${params.id}`, {
+      method: 'DELETE',
+      headers: {
+        "Authorization": getAuthToken()
+      }
+    })
+      .then(response => this.handleResponse(onSuccess, onFailure, response))
+  }
+
   fetchCategories ({onSuccess, onFailure}) {
     window.fetch('/categories')
       .then(response => this.handleResponse(onSuccess, onFailure, response))

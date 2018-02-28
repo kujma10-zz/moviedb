@@ -1,9 +1,10 @@
 import { Component } from 'react';
-import { clearAuthToken } from '../helpers/Auth';
+import { clearAuthToken, clearUserId } from '../helpers/Auth';
 
 class Logout extends Component {
   componentDidMount() {
     clearAuthToken()
+    clearUserId()
     this.props.history.push("/")
   }
 
