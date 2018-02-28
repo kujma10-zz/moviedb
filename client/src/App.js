@@ -24,6 +24,14 @@ class App extends React.Component {
   };
 
   render() {
+    const loginLink = (<Link className="btn btn-primary" to='/login'>Log In</Link>);
+    const logOutLink = (<Link className="btn btn-danger" to='/logout'>Log Out</Link>);
+    const addMovieBtn = (
+      <button className="btn btn-outline-primary my-2 my-sm-0" onClick={this.onOpenModal} >
+        Add Movie
+      </button>
+    );
+
     return (
       <div>
         <MetaTags>
@@ -33,13 +41,13 @@ class App extends React.Component {
         <nav className="navbar navbar-light bg-light justify-content-between">
           <a href="/" className="navbar-brand">MovieDB</a>
           <SearchMovies />
-          {isLoggedIn() ? <button onClick={this.onOpenModal}>Add Movie</button>:null}
+          {isLoggedIn() ? addMovieBtn  : null}
           <Modal open={this.state.open} onClose={this.onCloseModal} little>
             <CreateMovieForm closeModal={this.onCloseModal}/>
           </Modal>
           <ul className="nav navbar-nav navbar-right">
             <li>
-              {isLoggedIn() ? (<Link to='/logout'>Log Out</Link>):(<Link to='/login'>Log In</Link>)}
+              {isLoggedIn() ? logOutLink : loginLink}
             </li>
           </ul>
         </nav>
