@@ -1,24 +1,28 @@
-# README
+# MovieDB
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Interactive Movie Database.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+MovieDB backend is Rails 5 with Postgres. Front-end is React application.
 
-* System dependencies
+### Build and run Rails 5 API
 
-* Configuration
+```
+bundle install
+rake db:migrate db:seed
+rails s -p 3001
+```
 
-* Database creation
+### Build and run front-end app
 
-* Database initialization
+```
+cd client && npm install && npm start
+```
 
-* How to run the test suite
+### Run tests
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+bundle install && bundle exec rspec
+cd client && npm install && npm test
+```
