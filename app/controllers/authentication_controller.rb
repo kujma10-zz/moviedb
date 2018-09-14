@@ -10,6 +10,7 @@ class AuthenticationController < ApplicationController
 
   private
 
+  # this is also for the demo
   def auth_params
     params.permit(:email, :password)
   end
