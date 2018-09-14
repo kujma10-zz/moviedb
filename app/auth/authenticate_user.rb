@@ -3,7 +3,7 @@ class AuthenticateUser
     @email = email
     @password = password
   end
-
+ # just test 4
   def call
     JsonWebToken.encode(user_id: user.id) if user
   end
