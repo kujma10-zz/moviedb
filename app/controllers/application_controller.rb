@@ -7,6 +7,7 @@ class ApplicationController < ActionController::API
 
   private
 
+  # this commit is only for the demo purposes some change
   def authorize_request
     @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
   end
